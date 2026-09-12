@@ -3,23 +3,21 @@
 Code and data for **AR-TDA**, a target-conditioned dual-level denoising framework for
 multi-behavior recommendation (MBR).
 
-> **Anonymous release.** This repository accompanies an anonymous submission. Author names,
-> affiliations and citation information are intentionally omitted; they will be added in the
-> camera-ready version.
+> This repository accompanies a submission under anonymous review; author and citation
+> information will be added later.
 
 ## 🔬 Overview
 
-AR-TDA is a **model-agnostic plug-in** for multi-behavior backbones. It denoises auxiliary
-behaviour signals at two levels. **AEGD** computes a target-conditioned uncertainty statistic
-for every node neighbourhood, filters unreliable edges with a dynamic threshold and
-renormalises the retained weights, leaving the target behaviour graph untouched. **REGA**
-aggregates behaviours with an entropy-gated attention mechanism that is blended with the
-ungated aggregate through a residual connection. This release contains the two backbones used
-in the paper: **MULE** and **HGIB**.
+AR-TDA is a **model-agnostic plug-in** for multi-behavior backbones. **AEGD** computes a
+target-conditioned uncertainty statistic for every node neighbourhood, filters unreliable edges
+with a dynamic threshold and renormalises the retained weights, leaving the target behaviour
+graph untouched. **REGA** aggregates behaviours with an entropy-gated attention mechanism that
+is blended with the ungated aggregate through a residual connection. Two backbones are
+included: **MULE** and **HGIB**.
 
 ## 🌟 Environment Setup
 
-Python 3.10 and PyTorch 2.0.1 built for CUDA 11.8. The PyTorch Geometric wheels must match the
+Python 3.10 and PyTorch 2.0.1 built for CUDA 11.8; the PyTorch Geometric wheels must match the
 torch build, which is why they are pinned to a wheel index in `requirements.txt`.
 
 ```bash
@@ -59,26 +57,10 @@ python ./src/main.py \
 ```
 
 The same configuration is used for all three datasets; only `--dataset` changes. Setting
-`--use_tda 0 --use_rega 0` gives the plain MULE backbone. The HGIB backbone is selected with
-`--model hgib` and is documented separately. All options are listed in `src/parser.py` and can
-be printed with `python ./src/main.py --help`.
-
-## ✅ Results
-
-Single-run results with `seed=42`, using the provided `train.json` / `test.json` splits,
-full-item ranking and the best test NDCG@10 checkpoint, as reported in the paper.
-
-| Dataset | MULE HR@10 | MULE NDCG@10 | MULE + AR-TDA HR@10 | MULE + AR-TDA NDCG@10 |
-|---|---:|---:|---:|---:|
-| Taobao | 0.1506 | 0.0879 | 0.1723 | 0.0962 |
-| Tmall  | 0.1417 | 0.0731 | 0.1700 | 0.0912 |
-| JData  | 0.5210 | 0.3306 | 0.5745 | 0.3778 |
+`--use_tda 0 --use_rega 0` gives the plain backbone, and `--model hgib` switches to the HGIB
+backbone. All options are listed in `src/parser.py`.
 
 ## ❤️ Acknowledgement
 
 This code is developed on top of the [MULE](https://github.com/geonwooko/MULE) and
 [HGIB](https://github.com/zhanghengyu0323/HGIB) implementations.
-
-## ✅ Citation
-
-The paper is under anonymous review. Citation information will be added once it is available.
