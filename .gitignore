@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.idea/
+.vscode/
+.ipynb_checkpoints/
+
+# experiment outputs
+experiments/
+logs/
+*.log
+
+# local notebooks / scratch
+notebooks/
+scratch/
